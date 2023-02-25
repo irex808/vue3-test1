@@ -3,6 +3,6 @@ export default {
     components: { LeaderBoard },
     template: 
     `
-
+    <leader-board></leader-board>
     `
 };
