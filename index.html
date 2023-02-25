@@ -5,7 +5,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Vue.js 3 Test NO. 1</title>
 </head>
-<body>
-    
+<body class="h-full grid place-items-center">
+    <div id="app">
+        
+    </div>
+    <script type="module">
+        import App from "./js/components/App.js";
+        Vue.createApp(App).mount("#app");
+    </script>
 </body>
 </html>
