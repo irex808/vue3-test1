@@ -1,4 +1,5 @@
 <script setup>
+import TestComponent from './TestComponent.vue';
 defineProps({
   msg: {
     type: String,
@@ -8,6 +9,8 @@ defineProps({
 </script>
 
 <template>
+
+  HI THERE !!!!! I am
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
     <h3>
