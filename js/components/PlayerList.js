@@ -8,12 +8,29 @@ export default{
             <player 
             v-for="player in players" 
             :key="player.id" 
-            :player="player">
+            :player="player"
+            @score="score"
+            >
             </player>
         </ul>
     </section>
     `,
+    updated(){
+        alert('Player has moved one slot up!');
+    },
+    data(){
+        return {
+            id: 0
+        }
+    },
     props:{
         players: Array
+    },
+    methods:{
+        score(id){
+            this.id = id;
+            console.log('PlayerList: ' + this.id);
+            this.$emit('scoreList', this.id);
+        }
     }
 };

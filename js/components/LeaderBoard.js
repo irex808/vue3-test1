@@ -5,7 +5,7 @@ export default{
     components: { PlayerList, PlayerCreate },
     template:
     `
-        <player-list :players="sortPlayersDesc"></player-list>
+        <player-list :players="sortPlayersDesc" @scoreList="incrementResult"></player-list>
         <player-create @createPlayer="addPlayer"></player-create>
         
     `,
@@ -32,7 +32,6 @@ export default{
                     i--;
                     continue;
                 }
-                console.log('Varijabla i ima vrijednost: ' + i);
                 if (index < numberOfPlayers ) {
                     this.players[index].difference = this.players[i].score - this.players[index].score;
                 }
@@ -49,6 +48,14 @@ export default{
             this.players.push({
                 name: name, score: score, difference:0, id: this.players.length+1
             });
+        },
+        incrementResult(id){
+            for(let i = 0; i < this.players.length; i++){
+                if(this.players[i].id === id){
+                    this.players[i].score++;
+                }
+            }
+            // sortPlayersDesc;
         }
     }
 
