@@ -1,9 +1,22 @@
 <script>
+import { store } from './store.js'
 export default{
+    watch: {
+    'player.position': {
+      handler(newChanged) {
+        store.count++;
+        if(store.count % 2 === 0){
+            this.changePosition();
+        }
+      },
+      deep: true,
+    },
+  },
     data(){
         return{
             id:0,
-            name:''
+            name:'',
+            store
         }
     },
     props:{
@@ -14,6 +27,10 @@ export default{
             this.id = this.player.id
             this.name = this.player.name
             this.$emit('score', this.id, this.name )
+        },
+        changePosition(){
+            this.name = this.player.name;
+            this.$emit('positionUp', this.name);
         }
     }
 }
