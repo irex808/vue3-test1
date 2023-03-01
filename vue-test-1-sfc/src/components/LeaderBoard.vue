@@ -7,10 +7,10 @@ export default{
     data(){
         return{
             players: [
-                { name: 'John', score: 10, difference: 0, id: 1 },
-                { name: 'Jack', score: 11, difference: 0, id: 2 },
-                { name: 'Tripple J', score: 12, difference: 0, id: 3 },
-                { name: 'Bowen', score: 13, difference: 0, id: 4 }
+                { name: 'John', score: 10, difference: 0, id: 1, position: 0 },
+                { name: 'Jack', score: 11, difference: 0, id: 2, position: 0 },
+                { name: 'Tripple J', score: 12, difference: 0, id: 3, position: 0 },
+                { name: 'Bowen', score: 13, difference: 0, id: 4, position: 0 }
             ],
             newPlayer:''
         }
@@ -19,6 +19,10 @@ export default{
         sortPlayersDesc() {
             let numberOfPlayers = this.players.length;
               this.players.sort((a, b) => b.score - a.score);
+              for(let i = 0; i < numberOfPlayers; i++)
+              {
+                this.players[i].position = i+1;
+              }
               let index = 0;
               for(let i = 0; i < numberOfPlayers; i++){
                 if (index === 0) {
