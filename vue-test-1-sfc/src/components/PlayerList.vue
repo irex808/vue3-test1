@@ -3,37 +3,31 @@ import Player from "./Player.vue";
 import Animation from "./Animation.vue";
 export default {
   components: { Player, Animation },
-  watch: {
-
-    players: {
-      handler(newChanged, oldChanged) {
-        console.log("It had changed!");
-      },
-      deep: true,
-    },
-  },
   data() {
     return {
       id: 0,
-      namen: "",
+      name: "",
       open: false,
-      changed: this.players,
     };
   },
   props: {
     players: Array,
-    name: "",
   },
   methods: {
-    score(id, name) {
+    score(id) {
       this.id = id;
-      this.namen = name;
       this.$emit("scoreList", this.id);
     },
+    showModal(name){
+        this.name = name;
+        console.log(this.name);
+        this.open = !this.open;
+    }
   },
 };
 </script>
 <template>
+<Animation v-if="this.open" :name="this.name" @closeModal="showModal"></Animation>
   <section v-show="players.length">
     <ul class="border border-gray-600 divide-y divide-gray-600">
       <Player
@@ -41,9 +35,10 @@ export default {
         :key="player.id"
         :player="player"
         @score="score"
+        @positionUp="showModal"
       >
       </Player>
     </ul>
   </section>
 </template>
-<!-- <Animation v-if="this.open"></Animation> -->
+<!--  -->
