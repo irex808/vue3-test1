@@ -2,7 +2,8 @@
 export default{
     data(){
         return{
-            id:0
+            id:0,
+            name:''
         }
     },
     props:{
@@ -11,9 +12,8 @@ export default{
     methods:{
         score(){
             this.id = this.player.id
-            console.log(this.id);
-            console.log("SMASH");
-            this.$emit('score', this.id )
+            this.name = this.player.name
+            this.$emit('score', this.id, this.name )
         }
     }
 }
