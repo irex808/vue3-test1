@@ -1,10 +1,10 @@
 <script>
 import PlayerList from "./PlayerList.vue";
 import PlayerCreate from "./PlayerCreate.vue";
-import NewPlayerAdded from "./NewPlayerAdded.vue";
+import FlashMessage from "./FlashMessage.vue";
 
 export default {
-  components: { PlayerList, PlayerCreate, NewPlayerAdded },
+  components: { PlayerList, PlayerCreate, FlashMessage },
   data() {
     return {
       players: [
@@ -15,6 +15,7 @@ export default {
       ],
       newPlayer: "",
       open: false,
+      message: ''
     };
   },
   computed: {
@@ -52,7 +53,7 @@ export default {
         difference: 0,
         id: this.players.length + 1,
       });
-      this.showNewPlayer();
+      this.showNewPlayer(name);
     },
     incrementResult(id) {
       for (let i = 0; i < this.players.length; i++) {
@@ -60,10 +61,10 @@ export default {
           this.players[i].score++;
         }
       }
-      // sortPlayersDesc;
     },
-    showNewPlayer() {
+    showNewPlayer(name) {
       this.open = true;
+      this.message = name + ' is a new player!'
       setTimeout(() => (this.open = false), 3000);
     },
   },
@@ -71,7 +72,7 @@ export default {
 </script>
 <template>
   <div>
-    <NewPlayerAdded v-if="this.open"></NewPlayerAdded>
+    <FlashMessage v-if="this.open" :message="message"></FlashMessage>
     <PlayerList
       :players="sortPlayersDesc"
       @scoreList="incrementResult"
