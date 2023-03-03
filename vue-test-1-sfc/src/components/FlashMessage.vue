@@ -6,7 +6,7 @@ export default {
 }
 </script>
 <template>
-    <div>
+    <div class="border rounded-lg mx-2 my-2 flex justify-center">
         {{ message }}
     </div>
 </template>

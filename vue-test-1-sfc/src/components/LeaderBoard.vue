@@ -129,20 +129,20 @@ export default {
     showFlashMessage(name, words) {
       this.open = true;
       this.message = name + words;
-      setTimeout(() => (this.open = false), 3000);
+      setTimeout(() => (this.open = false), 1200);
     },
   },
 };
 </script>
 <template>
-  <div>
-    <FlashMessage v-if="this.open" :message="message"></FlashMessage>
+  <div class="container inline-block-center">
     <PlayerList
       :players="sortPlayersAsc"
       @onScoreList="incrementResult"
     ></PlayerList>
-    <div class="mx-2">
+    <div class="mx-2 flex justify-center">
       <PlayerCreate @createPlayer="addPlayer"></PlayerCreate>
     </div>
+    <FlashMessage v-if="this.open" :message="message"></FlashMessage>
   </div>
 </template>
