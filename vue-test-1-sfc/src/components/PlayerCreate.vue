@@ -40,7 +40,6 @@ export default {
       <input
         v-model="score"
         @focus="this.score = ''"
-        @focusout="this.score = 0"
         class="border-r p-2 "
       />
       <button
