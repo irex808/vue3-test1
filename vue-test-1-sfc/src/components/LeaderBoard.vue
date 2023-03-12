@@ -2,9 +2,10 @@
 import PlayerList from "./PlayerList.vue";
 import PlayerCreate from "./PlayerCreate.vue";
 import FlashMessage from "./FlashMessage.vue";
+import PlayerNewModal from "./PlayerNewModal.vue";
 
 export default {
-  components: { PlayerList, PlayerCreate, FlashMessage },
+  components: { PlayerList, PlayerCreate, FlashMessage, PlayerNewModal },
   data() {
     return {
       players: [
@@ -34,9 +35,12 @@ export default {
       newPlayer: "",
       open: false,
       message: "",
+      name:"",
+      modalActive: false
     };
   },
   computed: {
+
     sortPlayersAsc() {
       let numberOfPlayers = this.players.length;
       this.sortPlayers();
@@ -64,11 +68,15 @@ export default {
     },
   },
   methods: {
+    toggleModel(){
+      this.modalActive = !this.modalActive;
+    },
     sortPlayers() {
       this.players.sort((a, b) => b.player.score - a.player.score);
     },
     addPlayer(name, score) {
       let idNew = this.players.length + 1;
+      this.name = name;
       this.players.push({
         id: idNew,
         player: {
@@ -85,7 +93,7 @@ export default {
       });
 
       let words = " is a new Player!";
-      this.showFlashMessage(name, words);
+      this.toggleModel();
     },
     incrementResult(id) {
       for (let i = 0; i < this.players.length; i++) {
@@ -144,5 +152,9 @@ export default {
       <PlayerCreate @createPlayer="addPlayer"></PlayerCreate>
     </div>
     <FlashMessage v-if="this.open" :message="message"></FlashMessage>
+    <PlayerNewModal :modalActive="modalActive" @onCloseModal="toggleModel">
+      <h1 class="text-black">Notification</h1>
+      <div class="text-black">{{ name }} is a new player on the board! </div>
+    </PlayerNewModal>
   </div>
 </template>
