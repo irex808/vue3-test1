@@ -42,6 +42,7 @@ export default {
 </style>
 
 <template>
+    <Teleport to="body">
     <Transition name="modal-outer">
   <div v-show="modalActive"
     class="absolute w-full bg-black bg-opacity-30 h-screen top-0 left-0 flex justify-center px-8"
@@ -57,4 +58,5 @@ export default {
 </Transition>
   </div>
 </Transition>
+</Teleport>
 </template>
